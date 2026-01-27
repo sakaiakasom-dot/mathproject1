@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<body>
+	<table border="1">
+
+		<thead>
+			<tr>
+				<th>問題番号</th>
+				<th>解答者数</th>
+				<th>質問者数</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for i in progresses %}
+				<tr>
+					<td>{{ i[0] }}</td>
+					<td>{{ i[1] }}</td>
+					<td>{{ i[2] }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<a href="{{ url_for('summary.show_menu')}}">メニューへ</a>
+</body>

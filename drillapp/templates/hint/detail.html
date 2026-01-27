@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}みんなのヒント{% endblock %}
+
+{% block content %}
+<body>
+	{% for i in hints %}
+		{% if i.question_id == student.question_id%}
+		<p>
+			{{ i.content }}
+			<a href="{{ url_for('hint.add_good', hint_id=i.hint_id, hrno=student.hrno)}}">いいね：{{ i.good_count }}</a>
+		</p>
+		{% endif %}
+	{% endfor %}
+	<a href="{{ url_for('drill.question_detail', hrno=student.hrno) }}">問題に戻る</a>
+	<a href="{{ url_for('hint.new_hint', hrno=student.hrno) }}">ヒントを入力する</a>
+</body>
+{% endblock %}

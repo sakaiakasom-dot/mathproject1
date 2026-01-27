@@ -1,0 +1,13 @@
+body{
+	font-familu: sans-serif;
+	margin: 2em;	
+}
+
+h1{
+	color: #377ba8;	
+}
+
+p{
+	font-size: 18px;
+	line-height: 1.6;
+}

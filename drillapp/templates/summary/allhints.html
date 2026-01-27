@@ -1,0 +1,11 @@
+<body>
+	{% for i in hints %}
+		<p>
+			HRNO：{{ i.hrno }}、
+			問題番号：{{ i.question_id }}、
+			内容、{{ i.content }}
+			<a href="{{ url_for('summary.add_good_by_teacher', hint_id=i.hint_id)}}">いいね：{{ i.good_count }}</a>
+		</p>
+	{% endfor %}
+	<a href="{{ url_for('summary.show_menu')}}">メニューへ</a>
+</body>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<body>
+	<table border="1">
+
+		<tbody>
+			{% for i in locations %}
+				<tr>
+					{% for j in i %}
+						<td>
+						{{ j[0] }}
+						<br>
+						{{ j[1] }}
+						<br>
+						{% if j[2] == 2 %}
+							<font color="red">質問有</font>
+						{% else %}
+							{{ " " }}
+						{% endif %}
+						</td>
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<a href="{{ url_for('summary.show_menu')}}">メニューへ</a>
+</body>

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}生徒情報確認{% endblock %}
+
+{% block content %}
+	<p>
+		HRNO：{{ student.hrno }}<br>
+		座席：<br>
+		窓から{{ student.seat_x }}列目<br>
+		前から{{ student.seat_y }}列目<br>
+	</p>
+	<p>
+		<a href="{{ url_for('drill.start_question', hrno=student.hrno) }}">最初の問題へ</a>
+		<a href="{{ url_for('auth.reset_seat', hrno=student.hrno) }}">座席登録取り消し</a>
+	</p>
+
+{% endblock %}

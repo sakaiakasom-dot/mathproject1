@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}生徒情報登録{% endblock %}
+
+{% block content %}
+	<h1>HRNO&座席登録</h1>
+	<form method="post">
+		<table border="1">
+			<thead>
+				<th>HRNO(十の位)</th>
+				<th>HRNO(一の位)</th>
+			</thead>
+			<tbody>
+				<td><center>
+					<select size="1" name="hrno10">
+						<option value=0>0</option>
+						<option value=1>1</option>
+						<option value=2>2</option>
+						<option value=3>3</option>
+						<option value=4>4</option>
+					</select>
+				</td></center>
+				<td><center>
+					<select size="1" name="hrno01">
+						<option value=0>0</option>
+						<option value=1>1</option>
+						<option value=2>2</option>
+						<option value=3>3</option>
+						<option value=4>4</option>
+						<option value=5>5</option>
+						<option value=6>6</option>
+						<option value=7>7</option>
+						<option value=8>8</option>
+						<option value=9>9</option>
+					</select>
+				</td></center>
+			</tbody>
+		</table>
+
+		<p>窓から何列目（縦）：
+			<select size="1" name="seat_x">
+				<option value=1>1</option>
+				<option value=2>2</option>
+				<option value=3>3</option>
+				<option value=4>4</option>
+				<option value=5>5</option>
+				<option value=6>6</option>
+			</select>
+		</p>
+		<p>前から何列目（横）：
+			<select size="1" name="seat_y">
+				<option value=1>1</option>
+				<option value=2>2</option>
+				<option value=3>3</option>
+				<option value=4>4</option>
+				<option value=5>5</option>
+				<option value=6>6</option>
+				<option value=7>7</option>
+			</select>
+		</p>			
+		<p><input type="submit" value="登録"></p>
+	</form>
+{% endblock %}

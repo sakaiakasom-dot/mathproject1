@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<body>
+	<p>
+		状況：
+		{% if student.status == 1 %}
+			解答中
+		{% elif student.status == 2 %}
+			苦戦中
+		{% endif %}
+		
+		{% if student.status == 1 %}
+			<a href="{{ url_for('drill.support_request', hrno=student.hrno) }}">手こずってます！</a>
+		{% elif student.status == 2 %}
+			<a href="{{ url_for('drill.support_end', hrno=student.hrno) }}">解決しました</a>
+		{% endif %}
+	</p>
+
+	<p>
+		<iframe width="1000" height="600" src="{{ url_for('static', filename=pdfname) }}"></iframe>
+	</p>
+
+	<p>
+		<a href="{{ url_for('drill.question_detail', hrno=student.hrno) }}">問題</a>	
+		<a href="{{ url_for('drill.answer_detail', hrno=student.hrno) }}">解答</a>
+	</p>
+	
+	<p>
+		<a href="{{ url_for('drill.previous_question', hrno=student.hrno) }}">前の問題へ</a>
+		<a href="{{ url_for('drill.next_question', hrno=student.hrno) }}">次の問題へ</a>
+		<a href="{{ url_for('drill.start_question', hrno=student.hrno) }}">最初の問題から</a>
+	</p>
+	<p>
+		<a href="{{ url_for('hint.hint_detail', hrno=student.hrno) }}">「みんなのヒント」へ</a>
+	</p>
+	<p>
+		{% if student.hrno <= 50 %}
+			HRNO：{{ student.hrno }}、
+			窓から{{ student.seat_x }}列目、
+			前から{{ student.seat_y }}列目；
+			<a href="{{ url_for('auth.reset_seat', hrno=student.hrno) }}">座席登録取り消し</a>
+		{% endif %}
+	</p>
+
+</body>
