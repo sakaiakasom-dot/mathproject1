@@ -20,7 +20,7 @@ for i in range(7):
     seats.append(seats_row)
     
 class Series:
-    def __init__(self, question_series = 1, question_count = 4):
+    def __init__(self, question_series = 1, question_count = 5):
         self.question_series = question_series
         self.question_count = question_count
         
