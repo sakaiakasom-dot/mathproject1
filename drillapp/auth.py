@@ -68,8 +68,8 @@ def reset_seat(hrno):
 def set_questions():
     if request.method == "POST":
         series.question_series = int(request.form["series_id"])
-        series.question_counts = int(request.form["question_counts"])
+        series.question_count = int(request.form["question_count"])
         flash("フォルダを"+str(series.question_series) + "番に設定しました。")
-        flash("問題数を" + str(series.question_counts)+"に設定しました。")
+        flash("問題数を" + str(series.question_count)+"に設定しました。")
         return redirect(url_for("auth.set_questions"))
     return render_template("auth/setting.html")

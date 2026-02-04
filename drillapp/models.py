@@ -20,9 +20,9 @@ for i in range(7):
     seats.append(seats_row)
     
 class Series:
-    def __init__(self, question_series = 1, question_counts = 4):
+    def __init__(self, question_series = 1, question_count = 4):
         self.question_series = question_series
-        self.question_count = question_counts
+        self.question_count = question_count
         
     def question_address(self, question_id):
         return(str(self.question_series) + "/questions/q" + str(question_id) + ".jpg")
