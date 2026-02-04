@@ -4,9 +4,10 @@
 
 {% block content %}
 	<h1>ヒント登録</h1>
-	<p>問題{{ student.quetion_id }}番のヒントや注意点や感想を入力しましょう。</p>
+	<p>問題{{ student.question_id }}番のヒントや注意点や感想を入力しましょう。</p>
 	<form method="post">
 		<p><textarea name="content" rows="5" cols="40"></textarea></p>
 		<p><input type="submit" value="投稿"></p>
 	</form>
+	<a href="{{ url_for('hint.hint_detail', hrno=student.hrno)}}">戻る</a>
 {% endblock %}

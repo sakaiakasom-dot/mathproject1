@@ -4,6 +4,7 @@
 	<table border="1">
 
 		<tbody>
+			<tr><td colspan="6"><center>後ろ</center></td></tr>
 			{% for i in locations %}
 				<tr>
 					{% for j in i %}
@@ -21,6 +22,7 @@
 					{% endfor %}
 				</tr>
 			{% endfor %}
+			<tr><td colspan="6"><center>前</center></td></tr>			
 		</tbody>
 	</table>
 	<a href="{{ url_for('summary.show_menu')}}">メニューへ</a>

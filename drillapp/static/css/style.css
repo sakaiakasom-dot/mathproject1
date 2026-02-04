@@ -8,6 +8,13 @@ h1{
 }
 
 p{
-	font-size: 18px;
+	font-size: 20px;
 	line-height: 1.6;
+}
+
+select{
+	border:1px solid;
+	font-size: 20px;
+	width: 50px;
+	height: 40px;
 }

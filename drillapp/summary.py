@@ -21,7 +21,7 @@ def show_location():
             if hrno != 0:
                 question_now = str(students[hrno].question_id) + "問目"
                 status_now = students[hrno].status
-                locations[i][j] = ["No:" + str(hrno), question_now, status_now]
+                locations[6 - i][5 - j] = ["No:" + str(hrno), question_now, status_now]
             
     return render_template("summary/location.html", locations = locations)
     
@@ -32,7 +32,7 @@ def show_menu():
 @summary_bp.route("/progress")
 def show_progress():
     progresses = []
-    for i in range(series.question_counts):
+    for i in range(series.question_count):
         progresses.append([i + 1 ,0, 0])
     for i in range(7):
         for j in range(6):
@@ -58,3 +58,25 @@ def add_good_by_teacher(hint_id):
             i.good_students.add(-1)
             i.good_count = len(i.good_students)
     return redirect(url_for("summary.show_allhints"))
+    
+@summary_bp.route("/challenge/<int:hrno>")
+def show_challenge(hrno):
+    student = students[hrno]
+
+    locations = []
+    for i in range(7):
+        location_row = []
+        for j in range(6):
+            location_row.append(["　", "挑戦前", "　"])
+        locations.append(location_row)
+    
+    for i in range(7):
+        for j in range(6):
+            hrno_for_location = seats[i][j]
+            student_for_location = students[hrno_for_location]
+            if student.hrno == hrno_for_location:
+                locations[i][j][1] = "あなた"
+            elif student_for_location.question_id == series.question_count:
+                locations[i][j][1] = "挑戦中"
+            
+    return render_template("summary/challenge.html", locations = locations, student=student)

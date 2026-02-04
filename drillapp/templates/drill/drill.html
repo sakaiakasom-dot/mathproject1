@@ -2,6 +2,23 @@
 
 <body>
 	<p>
+		<a href="{{ url_for('drill.question_detail', hrno=student.hrno) }}">問題</a>	
+		<a href="{{ url_for('drill.answer_detail', hrno=student.hrno) }}">解答</a>
+		<a href="{{ url_for('drill.hint_detail', hrno=student.hrno) }}">先生からのヒント</a>
+
+	</p>
+	
+	<p>
+		<a href="{{ url_for('drill.previous_question', hrno=student.hrno) }}">前の問題へ</a>
+		<a href="{{ url_for('drill.next_question', hrno=student.hrno) }}">次の問題へ</a>
+		<a href="{{ url_for('drill.start_question', hrno=student.hrno) }}">最初の問題から</a>
+	</p>
+
+	<p>
+		<img width="600" border="5" src="{{ url_for('static', filename=jpgname) }}"></img>
+	</p>
+
+	<p>
 		状況：
 		{% if student.status == 1 %}
 			解答中
@@ -10,28 +27,15 @@
 		{% endif %}
 		
 		{% if student.status == 1 %}
-			<a href="{{ url_for('drill.support_request', hrno=student.hrno) }}">手こずってます！</a>
+			<a href="{{ url_for('drill.support_request', hrno=student.hrno) }}">苦戦中と報告</a>
 		{% elif student.status == 2 %}
-			<a href="{{ url_for('drill.support_end', hrno=student.hrno) }}">解決しました</a>
+			<a href="{{ url_for('drill.support_end', hrno=student.hrno) }}">解決したと報告</a>
 		{% endif %}
 	</p>
 
 	<p>
-		<iframe width="1000" height="600" src="{{ url_for('static', filename=pdfname) }}"></iframe>
-	</p>
-
-	<p>
-		<a href="{{ url_for('drill.question_detail', hrno=student.hrno) }}">問題</a>	
-		<a href="{{ url_for('drill.answer_detail', hrno=student.hrno) }}">解答</a>
-	</p>
-	
-	<p>
-		<a href="{{ url_for('drill.previous_question', hrno=student.hrno) }}">前の問題へ</a>
-		<a href="{{ url_for('drill.next_question', hrno=student.hrno) }}">次の問題へ</a>
-		<a href="{{ url_for('drill.start_question', hrno=student.hrno) }}">最初の問題から</a>
-	</p>
-	<p>
 		<a href="{{ url_for('hint.hint_detail', hrno=student.hrno) }}">「みんなのヒント」へ</a>
+		<a href="{{ url_for('summary.show_challenge', hrno=student.hrno) }}">最終問題挑戦中の生徒</a>
 	</p>
 	<p>
 		{% if student.hrno <= 50 %}

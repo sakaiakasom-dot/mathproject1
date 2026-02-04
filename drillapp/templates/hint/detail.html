@@ -4,6 +4,10 @@
 
 {% block content %}
 <body>
+	<h1>みんなのヒント：{{ student.question_id }}問目</h1>
+	<p>
+		ヒントや計算間違いの経験や感想など、気づいたことは何でも書いてください。
+	</p>
 	{% for i in hints %}
 		{% if i.question_id == student.question_id%}
 		<p>
@@ -11,8 +15,12 @@
 			<a href="{{ url_for('hint.add_good', hint_id=i.hint_id, hrno=student.hrno)}}">いいね：{{ i.good_count }}</a>
 		</p>
 		{% endif %}
+	{% else %}
+		入力なし（何か入力してみてくださいね）
 	{% endfor %}
-	<a href="{{ url_for('drill.question_detail', hrno=student.hrno) }}">問題に戻る</a>
-	<a href="{{ url_for('hint.new_hint', hrno=student.hrno) }}">ヒントを入力する</a>
+	<p>
+		<a href="{{ url_for('drill.question_detail', hrno=student.hrno) }}">問題に戻る</a>
+		<a href="{{ url_for('hint.new_hint', hrno=student.hrno) }}">ヒントを入力する</a>
+	</p>
 </body>
 {% endblock %}

@@ -22,13 +22,17 @@ for i in range(7):
 class Series:
     def __init__(self, question_series = 1, question_counts = 4):
         self.question_series = question_series
-        self.question_counts = question_counts
+        self.question_count = question_counts
         
     def question_address(self, question_id):
-        return(str(self.question_series) + "/questions/q" + str(question_id) + ".pdf")
+        return(str(self.question_series) + "/questions/q" + str(question_id) + ".jpg")
         
     def answer_address(self, question_id):
-        return(str(self.question_series) + "/answers/a" + str(question_id) + ".pdf")
+        return(str(self.question_series) + "/answers/a" + str(question_id) + ".jpg")
+        
+    def hint_address(self, question_id):
+        return(str(self.question_series) + "/hints/h" + str(question_id) + ".jpg")
+        
 
 series = Series()        
 
