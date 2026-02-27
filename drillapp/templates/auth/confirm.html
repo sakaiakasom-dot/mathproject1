@@ -7,11 +7,17 @@
 	<p>
 		HRNO：{{ student.hrno }}<br>
 		座席：<br>
-		窓から{{ student.seat_x }}列目<br>
-		前から{{ student.seat_y }}列目<br>
+		{% for i in range(7) %}
+			{% for j in range(6) %}
+				{% if seats[i][j] == student.hrno %}
+					窓から{{ j + 1 }}列目<br>
+					前から{{ i + 1 }}列目<br>
+				{% endif %}
+			{% endfor %}
+		{% endfor %}
 	</p>
 	<p>
-		<a href="{{ url_for('drill.start_question', hrno=student.hrno) }}">最初の問題へ</a>
+		<a href="{{ url_for('drill.question_detail', hrno=student.hrno) }}">問題を解く</a>
 		<a href="{{ url_for('auth.reset_seat', hrno=student.hrno) }}">座席登録取り消し</a>
 	</p>
 

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<head>
+	<meta http-equiv="refresh" content="10; URL=">
+</head>
+
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>座席配置</th>
+				<th>進行</th>
+			</tr>
+		</thead>
+		<tbody valign="top">
+			<td>
+				<table border="1">
+
+					<tbody valign="center" align="center">
+						<tr><td colspan="6">後ろ</td></tr>
+						{% for i in locations %}
+							<tr>
+								{% for j in i %}
+									<td>
+									{{ j[0] }}
+									<br>
+									{{ j[1] }}
+									<br>
+									{% if j[2] == 2 %}
+										<font color="red">質問有</font>
+									{% else %}
+										{{ " " }}
+									{% endif %}
+									</td>
+								{% endfor %}
+							</tr>
+						{% endfor %}
+						<tr><td colspan="6">前</td></tr>			
+					</tbody>
+				</table>
+			</td>
+			<td>
+				<table border="1">
+
+					<thead>
+						<tr>
+							<th>問題番号</th>
+							<th>解答者数</th>
+							<th>質問者数</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for i in progresses %}
+							<tr>
+								<td>{{ i[0] }}</td>
+								<td>{{ i[1] }}</td>
+								<td>{{ i[2] }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</td>
+		</tbody>
+	</table>
+	
+	{% for i in hints %}
+		<p>
+			HRNO：{{ i.hrno }}、
+			問題番号：{{ i.question_id }}、
+			内容：{{ i.content }}、
+			いいね：{{ i.good_count }}
+		</p>
+	{% endfor %}
+	<a href="{{ url_for('summary.show_menu')}}">メニューへ</a>
+
+</body>

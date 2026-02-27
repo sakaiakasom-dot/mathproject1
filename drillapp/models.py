@@ -1,8 +1,6 @@
 class Student:
     def __init__(self, hrno):
         self.hrno = hrno
-        self.seat_x = 0
-        self.seat_y = 0
         self.question_id = 1
         self.status = 1
 

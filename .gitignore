@@ -1,0 +1,3 @@
+setting.bat
+venv/
+*.pyc

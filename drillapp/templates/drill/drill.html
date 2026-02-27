@@ -39,10 +39,7 @@
 	</p>
 	<p>
 		{% if student.hrno <= 50 %}
-			HRNO：{{ student.hrno }}、
-			窓から{{ student.seat_x }}列目、
-			前から{{ student.seat_y }}列目；
-			<a href="{{ url_for('auth.reset_seat', hrno=student.hrno) }}">座席登録取り消し</a>
+			<a href="{{ url_for('auth.student_confirm', hrno=student.hrno) }}">登録情報確認＆解除</a>
 		{% endif %}
 	</p>
 

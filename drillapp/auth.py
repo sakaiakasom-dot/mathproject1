@@ -11,29 +11,34 @@ def student_register():
     if request.method == "POST":
         hrno = int(request.form["hrno10"]) * 10 + int(request.form["hrno01"])
         
+        seat_x = int(request.form["seat_x"])
+        seat_y = int(request.form["seat_y"])
+
+        if seats[seat_y - 1][seat_x - 1] == hrno:
+            flash("再ログイン！")
+            return redirect(url_for("auth.student_confirm", hrno = hrno))
+        elif seats[seat_y - 1][seat_x - 1] != 0:
+            flash("座席が重なっています")
+            return redirect(url_for("auth.student_register"))
+
         for i in seats:
             for j in i:
                 if j == hrno:
                     flash("HRNOは使用されています")
                     return redirect(url_for("auth.student_register"))
-        
-        student = students[hrno]
-        
-        seat_x = int(request.form["seat_x"])
-        seat_y = int(request.form["seat_y"])
-
-        if seats[seat_y - 1][seat_x - 1] != 0:
-            flash("座席が重なっています")
-            return redirect(url_for("auth.student_register"))
-        
-        else:
-            seats[seat_y - 1][seat_x - 1] = hrno
-            student.seat_x = seat_x
-            student.seat_y = seat_y
-        
+                
+        seats[seat_y - 1][seat_x - 1] = hrno
         flash("登録完了！")
         return redirect(url_for("auth.student_confirm", hrno = hrno))
     return render_template("auth/login.html")
+
+@auth_bp.route("/relogin", methods = ["GET", "POST"])
+def student_relogin():
+    if request.method == "POST":
+        hrno = int(request.form["hrno10"]) * 10 + int(request.form["hrno01"])
+        
+        return redirect(url_for("drill.question_detail", hrno = hrno))
+    return render_template("auth/relogin.html")
 
 @auth_bp.route("/trial", methods = ["GET", "POST"])
 def teacher_trial():
@@ -55,12 +60,14 @@ def teacher_trial():
 @auth_bp.route("/confirm/<int:hrno>")
 def student_confirm(hrno):
     student = students[hrno]
-    return render_template("auth/confirm.html", student = student)
+    return render_template("auth/confirm.html", student = student, seats = seats)
     
 @auth_bp.route("/logout/<int:hrno>")
 def reset_seat(hrno):
-    student = students[hrno]
-    seats[student.seat_y - 1][student.seat_x - 1] = 0
+    for i in seats:
+        for j in i:
+            if j == hrno:
+                j = 0
     flash("登録解除")
     return redirect(url_for("auth.student_register"))
                 
